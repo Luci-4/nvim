@@ -58,9 +58,9 @@ require("lazy").setup({
     require("Comment").setup({ignore = '^$'})
   end,
 },
-{
-  dir = "C:/Users/wojci/Desktop/Programming/ai-help.nvim",  
-  name = "ai-help",       -- optional name
-  lazy = false                    -- load on startup
-},
+-- {
+--   dir = "C:/Users/wojci/Desktop/Programming/ai-help.nvim",  
+--   name = "ai-help",       -- optional name
+--   lazy = false                    -- load on startup
+-- },
 })
