@@ -26,7 +26,6 @@ local function my_on_attach(bufnr)
     function create()
         local dir_path, name = getDirPathAndName()
         local new_name = vim.fn.input(dir_path, "")
-        print("if not exist " .. dir_path .. new_name .. " type nul > " .. dir_path .. new_name)
         vim.fn.system("touch " .. dir_path .. new_name)
     end
 
