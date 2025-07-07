@@ -16,7 +16,7 @@ local function open_or_reuse_terminal()
 end
 
 local run_commands = {
-  python = function(filename) return "python \"" .. filename .. "\"\n" end,
+  python = function(filename) return "python3 \"" .. filename .. "\"\n" end,
   lua = function(filename) return "lua \"" .. filename .. "\"\n" end,
   javascript = function(filename) return "node \"" .. filename .. "\"\n" end,
   typescript = function(filename) return "ts-node \"" .. filename .. "\"\n" end,
