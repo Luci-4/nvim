@@ -9,10 +9,15 @@ require('config.comments')
 require('config.file_manager')
 -- require('config.virtual')
 
-
+if vim.fn.has('unix') == 1 then
+  vim.opt.shell = "/bin/bash"
+  vim.opt.shellcmdflag = "-c"
+  vim.opt.shellquote = "\""
+  vim.opt.shellxquote = ""
+end
 
 vim.o.hlsearch = false
-vim.o.clipboard = "unnamed"
+vim.o.clipboard = "unnamedplus"
 vim.o.number = true
 vim.cmd("syntax on")
 vim.o.tabstop = 4
@@ -36,10 +41,10 @@ end
 
 local function get_title_string()
   local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
-  local repo = system_trimmed("git rev-parse --show-toplevel")
+    local repo = system_trimmed("git rev-parse --show-toplevel 2>/dev/null")
   local repo_name = repo and vim.fn.fnamemodify(repo, ":t") or nil
-    local repo_author = system_trimmed("git log --reverse --format=%an | head -n 1")
-  local branch = system_trimmed("git rev-parse --abbrev-ref HEAD")
+    local repo_author = system_trimmed("git log --reverse --format=%an | head -n 1 2>/dev/null")
+    local branch = system_trimmed("git rev-parse --abbrev-ref HEAD 2>/dev/null")
 
   local parts = { cwd .. "/"}
   local git_parts = {}

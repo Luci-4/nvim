@@ -74,7 +74,7 @@ local project_build_commands = {
     if not exists(build_dir) then
       table.insert(cmd, "mkdir build")
       table.insert(cmd, "cd build")
-      table.insert(cmd, 'cmake .. -G "MinGW Makefiles" -DCMAKE_EXPORT_COMPILE_COMMANDS=1')
+      table.insert(cmd, 'cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS=1')
       table.insert(cmd, "cd ..")
     end
 

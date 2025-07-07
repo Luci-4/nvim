@@ -23,21 +23,21 @@ local function my_on_attach(bufnr)
     function rename()
         local dir_path, name = getDirPathAndName()
         local new_name = vim.fn.input(dir_path, name)
-        vim.fn.system("ren " .. dir_path .. name .. " " .. new_name)
+        vim.fn.system("mv " .. dir_path .. name .. " " .. new_name)
     end
 
     function create()
         local dir_path, name = getDirPathAndName()
         local new_name = vim.fn.input(dir_path, "")
         print("if not exist " .. dir_path .. new_name .. " type nul > " .. dir_path .. new_name)
-       vim.fn.system("if not exist " .. dir_path .. new_name .. " type nul > " .. dir_path .. new_name) 
+        vim.fn.system("touch " .. dir_path .. new_name)
     end
 
     function delete()
         local dir_path, name = getDirPathAndName()
         local answer = vim.fn.input("Delete " .. dir_path .. name .. "? (y/n)", "")
         if answer == "y" then
-            vim.fn.system("del " .. dir_path .. name) 
+            vim.fn.system("rm " .. dir_path .. name)
         end
     end
 
@@ -321,10 +321,10 @@ require("nvim-tree").setup {
         enable = true,
         debounce_delay = 50,
         ignore_dirs = {
-          "/.ccls-cache",
-          "/build",
-          "/node_modules",
-          "/target",
+          ".ccls-cache",
+          "build",
+          "node_modules",
+          "target",
         },
       },
       actions = {
