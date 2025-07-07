@@ -5,8 +5,8 @@ require('config.tele')
 require('config.tele_abstr')
 require('config.lsp')
 require('config.term')
-require('config.neo_tree')
 require('config.comments')
+require('config.file_manager')
 -- require('config.virtual')
 
 
@@ -38,12 +38,19 @@ local function get_title_string()
   local cwd = vim.fn.fnamemodify(vim.fn.getcwd(), ":t")
   local repo = system_trimmed("git rev-parse --show-toplevel")
   local repo_name = repo and vim.fn.fnamemodify(repo, ":t") or nil
+    local repo_author = system_trimmed("git log --reverse --format=%an | head -n 1")
   local branch = system_trimmed("git rev-parse --abbrev-ref HEAD")
 
-  local parts = { cwd }
-  if repo_name then table.insert(parts, repo_name) end
-  if branch then table.insert(parts, branch) end
-  return table.concat(parts, " | ")
+  local parts = { cwd .. "/"}
+  local git_parts = {}
+  -- if repo_name then table.insert(parts, repo_name .. "@*" .. branch) end
+  -- if branch then table.insert(parts, "* " .. branch) end
+  if repo_author then table.insert(git_parts, repo_author .. " | ") end
+  if repo_name then table.insert(git_parts, repo_name) end
+  if branch then table.insert(git_parts, " @ " .. branch) end
+    return cwd .. "/" .. "       " .. table.concat(git_parts, "") 
+  -- return table.concat(parts, "  ")
+
 end
 
 

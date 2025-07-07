@@ -45,21 +45,11 @@ require("lazy").setup({
   end,
 },
 {
-  "nvim-neo-tree/neo-tree.nvim",
-  branch = "v3.x",
-  dependencies = {
-    "nvim-lua/plenary.nvim",
-    "nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-    "MunifTanjim/nui.nvim",
-    -- {"3rd/image.nvim", opts = {}}, -- Optional image support in preview window: See `# Preview Mode` for more information
-  },
-  lazy = false, -- neo-tree will lazily load itself
-  ---@module "neo-tree"
-  ---@type neotree.Config?
-  opts = {
-    -- fill any relevant options here
-    position = "right"
-  },
+  'nvim-tree/nvim-tree.lua',
+  dependencies = { 'nvim-tree/nvim-web-devicons' },
+  config = function()
+    require('nvim-tree').setup()
+  end
 },
 { "nvim-tree/nvim-web-devicons", lazy = true },
 {
@@ -67,5 +57,10 @@ require("lazy").setup({
   config = function()
     require("Comment").setup({ignore = '^$'})
   end,
-}
+},
+{
+  dir = "C:/Users/wojci/Desktop/Programming/ai-help.nvim",  
+  name = "ai-help",       -- optional name
+  lazy = false                    -- load on startup
+},
 })
