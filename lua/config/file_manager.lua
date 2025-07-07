@@ -9,13 +9,10 @@ local function my_on_attach(bufnr)
         local name = result["name"]
         local dir_path = nil
         if type == "file" then
-            local normalized = path:gsub("\\", "/")
-            dir_path = normalized:match("(.*/)")
-
-            dir_path = dir_path and dir_path:gsub("/", "\\") or nil
+            dir_path = path:match("(.*/)")
         end
         if type == "directory" then
-            dir_path = path .. "\\"
+            dir_path = path .. "/"
         end
         return dir_path, name
     end
@@ -174,7 +171,7 @@ require("nvim-tree").setup {
         -- group_empty = false,
         -- full_name = false,
         root_folder_label = function(path)
-              return vim.fn.fnamemodify(path, ':t') .. "\\"
+              return vim.fn.fnamemodify(path, ':t') .. "/"
             end,
         -- indent_width = 2,
         -- special_files = { "Cargo.toml", "Makefile", "README.md", "readme.md" },
