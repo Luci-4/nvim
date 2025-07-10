@@ -1,5 +1,7 @@
 local function my_on_attach(bufnr)
     local api = require("nvim-tree.api")
+    api.tree.change_root_to_parent = function () end
+    api.node.navigate.parent = function() end
 
     function getDirPathAndName()
 
@@ -125,8 +127,8 @@ require("nvim-tree").setup {
     --   hijack_netrw = true,
     --   hijack_unnamed_buffer_when_opening = false,
     --   root_dirs = {},
-    --   prefer_startup_root = false,
-    --   sync_root_with_cwd = false,
+      prefer_startup_root = true,
+      sync_root_with_cwd = true,
     --   reload_on_bufenter = false,
     --   respect_buf_cwd = false,
     --   select_prompts = false,
@@ -329,11 +331,11 @@ require("nvim-tree").setup {
       },
       actions = {
         use_system_clipboard = true,
-        -- change_dir = {
-        --   enable = true,
-        --   global = false,
-        --   restrict_above_cwd = false,
-        -- },
+        change_dir = {
+          enable = false,
+          global = false,
+          restrict_above_cwd = true,
+        },
         -- expand_all = {
         --   max_folder_discovery = 300,
         --   exclude = {},
