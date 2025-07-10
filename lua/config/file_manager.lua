@@ -325,11 +325,11 @@ require("nvim-tree").setup {
       },
       actions = {
         use_system_clipboard = true,
-        -- change_dir = {
-        --   enable = true,
-        --   global = false,
-        --   restrict_above_cwd = false,
-        -- },
+        change_dir = {
+          enable = false,
+          global = false,
+          restrict_above_cwd = true,
+        },
         -- expand_all = {
         --   max_folder_discovery = 300,
         --   exclude = {},
